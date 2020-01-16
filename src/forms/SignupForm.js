@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link , withRouter, Redirect} from "react-router-dom";
+import authStore from "../stores/authStore";
 
 class Signup extends Component {
   state = {
@@ -14,12 +15,14 @@ class Signup extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    alert("I DON'T WORK YET");
+    authStore.signup(this.state,this.props.history);
   };
 
   render() {
     const { username, email, password } = this.state;
-
+    if (authStore.user){
+      return <Redirect to="/"/>
+     }
     return (
       <div className="col-6 mx-auto">
         <div className="card my-5">
@@ -76,4 +79,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default withRouter(Signup);

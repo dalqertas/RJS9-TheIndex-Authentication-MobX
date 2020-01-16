@@ -1,9 +1,7 @@
 import { decorate, observable, computed } from "mobx";
-import axios from "axios";
+import instance from './instance';
 
-const instance = axios.create({
-  baseURL: "https://the-index-api.herokuapp.com"
-});
+
 
 class AuthorStore {
   authors = [];
